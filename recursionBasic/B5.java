@@ -1,15 +1,16 @@
 import java.util.Scanner;
 
-// wap to input a no and it's power and calculate the value(stack height= n)
-public class B4 {
+// wap to input a no and it's power and calculate the value(stack height= log n)
+public class B5 {
     public static int pow(int x,int n){
         if (x==0) // base case-1
             return 0;
         else if (n==0) // base case-2
             return 1;
-        int p1=pow(x,n-1);
-        int p=x*p1;
-        return p;
+        if(n%2==0) // if n is even
+            return pow(x,n/2)*pow(x,n/2);
+        else // if n is odd
+            return pow(x,n/2)*pow(x,n/2)*x;
     }
     public static void main(String[] args){
         Scanner sc= new Scanner(System.in);
