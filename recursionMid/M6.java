@@ -7,6 +7,8 @@ public class M6 {
             System.out.println("The new word is..."+s);
             return;
         }
+
+        // adding the element which occurred for the first time to new string
         if (s.indexOf(str.charAt(i))==-1)
             s+=str.charAt(i);
         duplicate(str, s, i+1);
