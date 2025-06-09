@@ -11,12 +11,12 @@ public class M5 {
         if (str.charAt(i)=='x')
             c+='x';
         else
-            s=s+str.charAt(i);
+            s+=str.charAt(i);
         check(str, s, c, i+1);
     }
     public static void main(String[] args) {
         Scanner sc= new Scanner(System.in);
-        System.out.println("enter a word");
+        System.out.println("Enter a word");
         String str= sc.next();
         check(str, "", "", 0);
     }
