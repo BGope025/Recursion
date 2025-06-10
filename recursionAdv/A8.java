@@ -20,7 +20,9 @@ public class A8 {
                     board[row][col]=(char)(i+'0');
                     if (helper(board, r, c))
                         return true;
-                    else
+                    else {
+                        board[row][col]='-';
+                    }
                 }
             }
         }
