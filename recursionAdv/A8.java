@@ -3,7 +3,7 @@ import java.util.Scanner;
 // Sudoku solver
 public class A8 {
 
-    // checks if placement is possible
+    // Checks if placement is possible or not
     public static boolean isSafe(char[][] board, int row, int col, int i) {
         // column check
         for (int x=0;x<board.length;x++) {
@@ -26,7 +26,7 @@ public class A8 {
         return true;
     }
 
-    // prints the solution
+    // Prints the solution
     public static void printSolution(char[][] board) {
         for (int i=0;i<9;i++) {
             System.out.print("| ");
@@ -39,6 +39,7 @@ public class A8 {
 
     // Recursion function
     public static boolean helper(char[][] board, int row, int col) {
+        // for position change
         if (row==9) { // base case
             printSolution(board);
             return true;
@@ -51,10 +52,9 @@ public class A8 {
         else {
             r=row+1;
         }
-        if (board[row][col]!='-' || board[row][col]!='0') {
-            return helper(board, r, c);
-        }
-        else {
+
+        // For data to be verified & entered
+        if (board[row][col]=='-' || board[row][col]=='0') { // blank space case
             for (int i=1;i<=9;i++) {
                 if (isSafe(board, row, col, i)) {
                     board[row][col]=(char)(i+'0');
@@ -66,8 +66,12 @@ public class A8 {
                 }
             }
         }
+        else { // data already available
+            return helper(board, r, c);
+        }
         return false;
     }
+    // To take rows as inputs from the user
     public static String input() {
         Scanner sc= new Scanner(System.in);
         String s=sc.next();
@@ -80,15 +84,17 @@ public class A8 {
     public static void main(String[] args){
         System.out.println("Enter the sudoku formate row wise and enter '-' or '0' for blank spaces");
         char[][] board= new char[9][9];
+        // Taking row input one at a time
         for (int i=0;i<9;i++) {
             System.out.println("Enter row "+(i+1));
             String s= input();
+            // Storing input into the array
             for (int j=0;j<9;j++) {
                 board[i][j]= s.charAt(j);
             }
         }
         boolean f= helper(board, 0, 0);
-        if (!f)
+        if (!f) // if the answer to the data by user is impossible
             System.out.println("\t**ERROR**\nNo solution for this data");
     }
 }
